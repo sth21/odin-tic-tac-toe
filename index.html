@@ -8,28 +8,35 @@
         <link rel="stylesheet" href="style.css">
         <script src="javascript.js" defer></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap" rel="stylesheet">
     </head>
-    <head>
+    <body>
         <div id="players">
-            <p class="player-one">Player One</p>
-            <p class="player-two">Player Two</p>
+            <div class="player-one">
+                <p>Player One</p>
+                <p style="font-family: 'Knewave', cursive">X</p>
+            </div>
+            <div class="player-two">
+                <p>Player Two</p>
+                <p style="font-family: 'Knewave', cursive">O</p>
+            </div>
         </div>
         <div id="scoreboard">
-            <div class="square one"></div>
-            <div class="square two"></div>
-            <div class="square three"></div>
-            <div class="square four"></div>
-            <div class="square five"></div>
-            <div class="square six" ></div>
-            <div class="square seven"></div>
-            <div class="square eight"></div>
-            <div class="square nine"></div>
+            <div class="square sq0"></div>
+            <div class="square sq1"></div>
+            <div class="square sq2"></div>
+            <div class="square sq3"></div>
+            <div class="square sq4"></div>
+            <div class="square sq5" ></div>
+            <div class="square sq6"></div>
+            <div class="square sq7"></div>
+            <div class="square sq8"></div>
         </div>
-        <div id="display-winner">
-            <p>Player One Wins!</p>
-        </div>
+        <div id="display-winner"></div>
         <button id="restart">Restart</button>
-    </head>
+    </body>
 </html>

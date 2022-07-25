@@ -80,6 +80,12 @@ body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.player-one, .player-two {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
 .player-one {
     background-color: var(--lightgreen);
 }
@@ -91,6 +97,11 @@ body {
 }
 
 .square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Knewave', cursive;
+    font-size: 2.5rem;
     background-color: var(--lightgrey);
     border-radius: 25px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
