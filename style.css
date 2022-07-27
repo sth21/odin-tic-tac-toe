@@ -116,6 +116,7 @@ body {
 }
 
 #restart {
+    display: none;
     position: fixed;
     top: 4.5%;
     right: 2%;

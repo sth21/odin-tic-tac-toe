@@ -4,6 +4,7 @@ const playerFactory = (playerName, marker) => {
 
 let playerOne;
 let playerTwo;
+let activePlayer;
 
 const gameSettings = (() => {
     let playerOneMarker;
@@ -18,7 +19,25 @@ const gameSettings = (() => {
     const playerBtn = document.querySelector('.player');
     const aiBtn = document.querySelector('.ai');
     const submitBtn = document.querySelector('#submit');
-    restart.addEventListener('click', () => location.reload());
+    const changeActivePlayer = () => {
+        let playerOneBox = document.querySelector('.player-one');
+        let playerTwoBox = document.querySelector('.player-two');
+        if (activePlayer === playerOne) {
+            playerOneBox.style.backgroundColor = 'white';
+            playerTwoBox.style.backgroundColor = 'var(--lightgreen)';
+            activePlayer = playerTwo;
+        } else {
+            playerOneBox.style.backgroundColor = 'var(--lightgreen)';
+            playerTwoBox.style.backgroundColor = 'white';
+            activePlayer = playerOne;
+        }
+    };
+    restart.addEventListener('click', () => {
+        if (activePlayer === playerTwo) {
+            changeActivePlayer();
+        }
+        gameBoard.clearBoard();
+    });
     const toggleMarker = (event) => {
         if (event.target.classList.contains('Xone')) {
             playerOneX.classList.add('selected-marker');
@@ -37,6 +56,7 @@ const gameSettings = (() => {
     document.addEventListener('submit', (event) => {
         event.preventDefault();
         const overlay = document.querySelector('#overlay');
+        const restart = document.querySelector('#restart');
         playerOneName = document.querySelector('[name="playerOneName"]').value;
         playerTwoName = document.querySelector('[name="playerTwoName"]').value;
         if (playerOneX.classList.contains('selected-marker')) {
@@ -47,6 +67,7 @@ const gameSettings = (() => {
             playerTwoMarker = 'X';
         }
         overlay.style.display = 'none';
+        restart.style.display = 'inline-block';
         playerOne = playerFactory(playerOneName, playerOneMarker);
         playerTwo = playerFactory(playerTwoName, playerTwoMarker);
         createPlayerBoxes();
@@ -73,7 +94,6 @@ const gameSettings = (() => {
 })();
 
 const gameFlow = (() => {
-    let activePlayer;
     let endTurnEarly;
     let firstTurn = true;
     const addToDOM = (event) => {
@@ -173,5 +193,20 @@ const gameBoard = (() => {
             square.removeEventListener('click', gameFlow.turn);
             });
     };
-    return {arr, deactivateBoard};
+    const clearBoard = () => {
+        for (let i = 0; i < arr.length; i++) {
+            arr[i] = undefined;
+        }
+        boardSquares.forEach((square) => {
+            square.textContent = arr[0];
+        });
+        let winMsg = document.querySelector('#display-winner');
+        if (winMsg.textContent !== '') {
+            boardSquares.forEach((square) => {
+                square.addEventListener('click', gameFlow.turn);
+            });
+            winMsg.textContent = '';
+        }
+    };
+    return {arr, deactivateBoard, clearBoard};
 })();
