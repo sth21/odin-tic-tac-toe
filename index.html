@@ -15,15 +15,40 @@
         <link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap" rel="stylesheet">
     </head>
     <body>
+        <div id="overlay">
+            <form>
+                <h1>Tic Tac Toe</h1>
+                <div id="choose-players">
+                    <div id="choose-player-one">
+                        <h2>Player One</h2>
+                        <input type="text" placeholder="Player Name" name="playerOneName" required>
+                        <div class="marker-select">
+                            <button type="button" class="Xone selected-marker">X</button>
+                            <button type="button" class="Oone">O</button>
+                        </div>
+                        <div class="player-select">
+                            <button type="button" id="player" class="selected-player">Player</button>
+                        </div>
+                    </div>
+                    <div id="choose-player-two">
+                        <h2>Player Two</h2>
+                        <input type="text" placeholder="Player Name" name="playerTwoName" required>
+                        <div class="marker-select">
+                            <button type="button" class="Xtwo">X</button>
+                            <button type="button" class="Otwo selected-marker">O</button>
+                        </div>
+                        <div class="player-select">
+                            <button type="button" class="player selected-player">Player</button>
+                            <button type="button" class="ai">AI</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" id="submit">Start</button>
+            </form>
+        </div>
         <div id="players">
-            <div class="player-one">
-                <p>Player One</p>
-                <p style="font-family: 'Knewave', cursive">X</p>
-            </div>
-            <div class="player-two">
-                <p>Player Two</p>
-                <p style="font-family: 'Knewave', cursive">O</p>
-            </div>
+            <div class="player-one"></div>
+            <div class="player-two"></div>
         </div>
         <div id="scoreboard">
             <div class="square sq0"></div>

@@ -125,10 +125,91 @@ body {
     font-weight: bold;
 }
 
-#restart:hover, .square:hover {
+#restart:hover, .square:hover, form button:hover {
     filter: brightness(75%);
 }
 
-#restart:active, .square:active {
+#restart:active, .square:active, form button:active {
     transform: scale(110%);
+}
+
+#overlay {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--offwhite);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: grid;
+    justify-items: center;
+    height: 60%;
+    width: 40%;
+    grid-template: 1fr 8fr 1fr/ 1fr;
+}
+
+#choose-players {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+#choose-player-one, #choose-player-two {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    letter-spacing: .5px;
+}
+
+#choose-player-one .player-select > * {
+    width: 149px;
+}
+
+form > h1 {
+    font-size: 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--black);
+}
+
+input, form button {
+    background-color: white;
+    border: 1px solid var(--black);
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+form button {
+    width: 70px;
+    height: 40px;
+}
+
+input {
+    border-radius: 10px;
+    text-align: center;
+    width: 160px;
+    height: 25px;
+}
+
+::placeholder {
+    color: var(--black);
+    text-align: center;
+}
+
+.selected-marker, .selected-player {
+    background-color: var(--lightgreen);
+}
+
+#submit {
+    width: 65.8%;
+}
+
+#submit:active {
+    background-color: var(--lightgreen);
 }

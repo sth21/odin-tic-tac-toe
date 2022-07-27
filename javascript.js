@@ -2,15 +2,82 @@ const playerFactory = (playerName, marker) => {
     return {name: playerName, marker};
 };
 
-let playerOne = playerFactory('Player One', 'X');
-let playerTwo = playerFactory('Player Two', 'O');
+let playerOne;
+let playerTwo;
+
+const gameSettings = (() => {
+    let playerOneMarker;
+    let playerTwoMarker;
+    let playerOneName;
+    let playerTwoName;
+    const restart = document.querySelector('#restart');
+    const playerOneO = document.querySelector('.Oone');
+    const playerOneX = document.querySelector('.Xone');
+    const playerTwoO = document.querySelector('.Otwo');
+    const playerTwoX = document.querySelector('.Xtwo');
+    const playerBtn = document.querySelector('.player');
+    const aiBtn = document.querySelector('.ai');
+    const submitBtn = document.querySelector('#submit');
+    restart.addEventListener('click', () => location.reload());
+    const toggleMarker = (event) => {
+        if (event.target.classList.contains('Xone')) {
+            playerOneX.classList.add('selected-marker');
+            playerOneO.classList.remove('selected-marker');
+            playerTwoO.classList.add('selected-marker');
+            playerTwoX.classList.remove('selected-marker');
+        } else {
+            playerOneX.classList.remove('selected-marker');
+            playerOneO.classList.add('selected-marker');
+            playerTwoO.classList.remove('selected-marker');
+            playerTwoX.classList.add('selected-marker');
+        }
+    };
+    playerOneO.addEventListener('click', toggleMarker);
+    playerOneX.addEventListener('click', toggleMarker);
+    document.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const overlay = document.querySelector('#overlay');
+        playerOneName = document.querySelector('[name="playerOneName"]').value;
+        playerTwoName = document.querySelector('[name="playerTwoName"]').value;
+        if (playerOneX.classList.contains('selected-marker')) {
+            playerOneMarker = 'X';
+            playerTwoMarker = 'O';
+        } else {
+            playerOneMarker = 'O';
+            playerTwoMarker = 'X';
+        }
+        overlay.style.display = 'none';
+        playerOne = playerFactory(playerOneName, playerOneMarker);
+        playerTwo = playerFactory(playerTwoName, playerTwoMarker);
+        createPlayerBoxes();
+    });
+    const createPlayerBoxes = () => {
+        let playerOneBox = document.querySelector('.player-one');
+        let oneBoxFirst = document.createElement('p');
+        oneBoxFirst.textContent = `${playerOneName}`;
+        playerOneBox.appendChild(oneBoxFirst);
+        let oneBoxSecond = document.createElement('p');
+        oneBoxSecond.style.fontFamily = "'Knewave', cursive";
+        oneBoxSecond.textContent = `${playerOneMarker}`;
+        playerOneBox.appendChild(oneBoxSecond);
+        let playerTwoBox = document.querySelector('.player-two');
+        let twoBoxFirst = document.createElement('p');
+        twoBoxFirst.textContent = `${playerTwoName}`;
+        playerTwoBox.appendChild(twoBoxFirst);
+        let twoBoxSecond = document.createElement('p');
+        twoBoxSecond.style.fontFamily = "'Knewave', cursive";
+        twoBoxSecond.textContent = `${playerTwoMarker}`;
+        playerTwoBox.appendChild(twoBoxSecond);
+    };
+    return {};
+})();
 
 const gameFlow = (() => {
-    let activePlayer = playerOne;
+    let activePlayer;
     let endTurnEarly;
+    let firstTurn = true;
     const addToDOM = (event) => {
         (event.target.textContent === '') ? event.target.textContent = activePlayer.marker : endTurnEarly = true;
-        console.log(endTurnEarly);
     };
     const addToArray = (event) => {
         let eventClass;
@@ -35,6 +102,10 @@ const gameFlow = (() => {
         }
     };
     const turn = (event) => {
+        if (firstTurn === true) {
+            activePlayer = playerOne;
+            firstTurn = false;
+        }
         endTurnEarly = false;
         addToDOM(event);
         if (endTurnEarly) return;
@@ -49,7 +120,6 @@ const gameFlow = (() => {
         if (arr[0] === arr[1] && arr[0] === arr[2] && arr[0] !== undefined) {
             winner = true;
         } else if (arr[3] === arr[4] && arr[3] === arr[5] && arr[3] !== undefined) {
-            console.log(arr[3]);
             winner = true;
         } else if (arr[6] === arr[7] && arr[6] === arr[8] && arr[6] !== undefined) {
             winner = true;
