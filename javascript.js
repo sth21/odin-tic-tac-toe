@@ -12,6 +12,7 @@ const gameSettings = (() => {
     let playerOneName;
     let playerTwoName;
     const restart = document.querySelector('#restart');
+    const mainmenu = document.querySelector('#main-menu');
     const playerOneO = document.querySelector('.Oone');
     const playerOneX = document.querySelector('.Xone');
     const playerTwoO = document.querySelector('.Otwo');
@@ -38,6 +39,7 @@ const gameSettings = (() => {
         }
         gameBoard.clearBoard();
     });
+    mainmenu.addEventListener('click', () => location.reload());
     const toggleMarker = (event) => {
         if (event.target.classList.contains('Xone')) {
             playerOneX.classList.add('selected-marker');
@@ -56,7 +58,6 @@ const gameSettings = (() => {
     document.addEventListener('submit', (event) => {
         event.preventDefault();
         const overlay = document.querySelector('#overlay');
-        const restart = document.querySelector('#restart');
         playerOneName = document.querySelector('[name="playerOneName"]').value;
         playerTwoName = document.querySelector('[name="playerTwoName"]').value;
         if (playerOneX.classList.contains('selected-marker')) {
@@ -68,6 +69,7 @@ const gameSettings = (() => {
         }
         overlay.style.display = 'none';
         restart.style.display = 'inline-block';
+        mainmenu.style.display = 'inline-block';
         playerOne = playerFactory(playerOneName, playerOneMarker);
         playerTwo = playerFactory(playerTwoName, playerTwoMarker);
         createPlayerBoxes();

@@ -69,7 +69,7 @@ body {
     gap: 50px;
 }
 
-.player-one, .player-two, #restart {
+.player-one, .player-two, #restart, #main-menu {
     letter-spacing: .5px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -115,22 +115,30 @@ body {
     font-size: 1.5rem;
 }
 
-#restart {
+#restart, #main-menu {
     display: none;
     position: fixed;
-    top: 4.5%;
     right: 2%;
     border: 0px;
     font-size: .5rem;
     transition: all .2s;
     font-weight: bold;
+    width: 150px;
 }
 
-#restart:hover, .square:hover, form button:hover {
+#main-menu {
+    top: 4.5%;
+}
+
+#restart {
+    top: 11%;
+}
+
+#restart:hover, .square:hover, form button:hover, #main-menu:hover {
     filter: brightness(75%);
 }
 
-#restart:active, .square:active, form button:active {
+#restart:active, .square:active, form button:active, #main-menu:active {
     transform: scale(110%);
 }
 
